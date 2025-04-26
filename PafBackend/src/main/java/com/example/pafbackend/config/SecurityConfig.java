@@ -32,7 +32,10 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> main
 import java.util.List;
 
 @Configuration
@@ -53,11 +56,38 @@ public class SecurityConfig {
     @Autowired
     KeyUtils keyUtils;
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> main
     @Autowired
     UserDetailsManager userDetailsManager;
 
     @Bean
+<<<<<<< HEAD
+    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        return http
+                .cors(cors -> cors.configurationSource(corsConfiguration()))
+                .csrf(AbstractHttpConfigurer::disable)
+                .authorizeHttpRequests(auth -> {
+                    auth.requestMatchers(
+                            "/api/auth/register",
+                            "/api/auth/login",
+                            "/api/users/exists/**" 
+                    ).permitAll();
+                    auth.anyRequest().authenticated();
+                })
+
+                .oauth2ResourceServer(
+                        (oauth2) -> oauth2.jwt((jwt) -> jwt.jwtAuthenticationConverter(jwtToUserConverter)))
+                .sessionManagement((session) -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+
+                .build();
+    }
+
+    @Bean
+    CorsConfigurationSource corsConfiguration() {
+=======
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
         return  http
                 .cors(cors->cors.configurationSource(corsConfiguration()))
@@ -75,12 +105,22 @@ public class SecurityConfig {
     }
     @Bean
     CorsConfigurationSource corsConfiguration(){
+>>>>>>> main
         CorsConfiguration corsConfiguration = new CorsConfiguration();
         corsConfiguration.setAllowedOrigins(List.of("http://localhost:3000"));
         corsConfiguration.addAllowedHeader("*");
         corsConfiguration.addAllowedMethod("*");
         corsConfiguration.setAllowCredentials(true);
         UrlBasedCorsConfigurationSource urlBasedCorsConfigurationSource = new UrlBasedCorsConfigurationSource();
+<<<<<<< HEAD
+        urlBasedCorsConfigurationSource.registerCorsConfiguration("/**", corsConfiguration);
+        return urlBasedCorsConfigurationSource;
+    }
+
+    @Bean
+    @Primary
+    JwtDecoder jwtAccessTokenDecoder() {
+=======
         urlBasedCorsConfigurationSource.registerCorsConfiguration("/**",corsConfiguration);
         return urlBasedCorsConfigurationSource;
     }
@@ -89,17 +129,29 @@ public class SecurityConfig {
     @Bean
     @Primary
     JwtDecoder jwtAccessTokenDecoder(){
+>>>>>>> main
         return NimbusJwtDecoder.withPublicKey(keyUtils.getAccessTokenPublicKey()).build();
     }
 
     @Bean
     @Primary
+<<<<<<< HEAD
+    JwtEncoder jwtAccessTokenEncoder() {
+        JWK jwk = new RSAKey.Builder(keyUtils.getAccessTokenPublicKey()).privateKey(keyUtils.getAccessTokenPrivateKey())
+                .build();
+
+        JWKSource<SecurityContext> jwkSource = new ImmutableJWKSet<>(new JWKSet(jwk));
+        return new NimbusJwtEncoder(jwkSource);
+    }
+
+=======
     JwtEncoder jwtAccessTokenEncoder(){
         JWK jwk = new RSAKey.Builder(keyUtils.getAccessTokenPublicKey()).privateKey(keyUtils.getAccessTokenPrivateKey()).build();
 
         JWKSource<SecurityContext> jwkSource = new ImmutableJWKSet<>(new JWKSet(jwk));
         return  new NimbusJwtEncoder(jwkSource);
     }
+>>>>>>> main
     @Bean
     @Qualifier("jwtRefreshTokenDecoder")
     JwtDecoder jwtRefreshTokenDecoder() {
@@ -109,8 +161,12 @@ public class SecurityConfig {
     @Bean
     @Qualifier("jwtRefreshTokenEncoder")
     JwtEncoder jwtRefreshTokenEncoder() {
+<<<<<<< HEAD
+        JWK jwk = new RSAKey.Builder(keyUtils.getRefreshTokenPublicKey())
+=======
         JWK jwk = new RSAKey
                 .Builder(keyUtils.getRefreshTokenPublicKey())
+>>>>>>> main
                 .privateKey(keyUtils.getRefreshTokenPrivateKey())
                 .build();
         JWKSource<SecurityContext> jwks = new ImmutableJWKSet<>(new JWKSet(jwk));
