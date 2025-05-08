@@ -1,4 +1,4 @@
-# SkillShare
+# SkillSync
 
 SkillShare is a collaborative project featuring a skill-sharing platform built using a modern tech stack. This includes a Spring Boot backend with MongoDB, and a React frontend integrated with Firebase for authentication, storage, and real-time data handling.
 
