@@ -8,43 +8,29 @@ import java.util.stream.Collectors;
 
 public class MilestoneMapper {
 
-    // Convert MilestoneDto to Milestone entity
-    public static Milestone mapToMilestone(MilestoneDto milestoneDto) {
-        Milestone milestone =new Milestone(
-                milestoneDto.getId(),
-                milestoneDto.getName(),
-                milestoneDto.getDeadline(),
-                milestoneDto.getStatus()
-        );
-        return milestone;
-
-    }
-
-    // Convert Milestone entity to MilestoneDto
-    public static MilestoneDto mapToMilestoneDto(Milestone milestone) {
-     MilestoneDto milestoneDto= new MilestoneDto(
-
-
-                milestone.getId(),
-                milestone.getName(),
-                milestone.getDeadline(),
-                milestone.getStatus()
-        );
-        return  milestoneDto;
-
-    }
-
-    // Convert List of Milestone entities to List of MilestoneDto objects
-    public static List<MilestoneDto> mapToMilestoneDtoList(List<Milestone> milestones) {
-        return milestones.stream()
-                .map(MilestoneMapper::mapToMilestoneDto)
+    public static List<Milestone> mapToMilestoneList(List<MilestoneDto> milestoneDtos) {
+        return milestoneDtos.stream()
+                .map(dto -> new Milestone(
+                        dto.getId(),
+                        dto.getTitle(),
+                        dto.getDescription(),
+                        dto.getDeadline(),
+                        dto.getStatus(),
+                        null, // learningPlan will be set separately
+                        null  // tasks are not mapped here
+                ))
                 .collect(Collectors.toList());
     }
 
-    // Convert List of MilestoneDto objects to List of Milestone entities
-    public static List<Milestone> mapToMilestoneList(List<MilestoneDto> milestoneDtos) {
-        return milestoneDtos.stream()
-                .map(MilestoneMapper::mapToMilestone)  // Convert MilestoneDto to Milestone
+    public static List<MilestoneDto> mapToMilestoneDtoList(List<Milestone> milestones) {
+        return milestones.stream()
+                .map(milestone -> new MilestoneDto(
+                        milestone.getId(),
+                        milestone.getTitle(),
+                        milestone.getDescription(),
+                        milestone.getDeadline(),
+                        milestone.getStatus()
+                ))
                 .collect(Collectors.toList());
     }
 }

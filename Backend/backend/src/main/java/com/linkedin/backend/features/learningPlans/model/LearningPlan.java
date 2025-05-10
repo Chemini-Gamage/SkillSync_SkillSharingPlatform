@@ -1,63 +1,57 @@
 package com.linkedin.backend.features.learningPlans.model;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
+
+import com.linkedin.backend.features.authentication.model.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.context.annotation.Primary;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
-@Entity
 
+@Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="learning_plans")
-
+@Table(name = "learning_plans")
 public class LearningPlan {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private Long id;
-    @Column(name = "title")
-    private String title;   // Name of the learning plan
 
-    @Column(name = "description")
-    private String description; // Description of the plan
-//#to store primitive types
-    @ElementCollection
-    @CollectionTable(name="learning_plan_topics",joinColumns=@JoinColumn(name="learning_plan_id"))
-    @Column(name = "topic")
-    private List<String> topics;  // List of topics in the plan
+    private String title; // Title of the learning plan
+    private String description; // Description of the learning plan
 
-@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.LAZY)
-@JoinColumn(name="learning_plan_id")
-    private List<Milestone> milestones;  // List of milestones with deadlines (Milestone class)
-    @JsonSerialize(using = LocalDateTimeSerializer.class)
-    @Column(name = "timeline_start")
-    private String timelineStart; // Start date of the learning plan (e.g., "2025-05-01")
-    @JsonSerialize(using = LocalDateTimeSerializer.class)
-    @Column(name = "timeline_end")
-    private String timelineEnd;   // End date of the learning plan (e.g., "2025-12-01")
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "learning_plan_id")
+    private List<Milestone> milestones; // List of milestones for the learning plan
+
+    private LocalDate timelineStart; // Start date
+    private LocalDate timelineEnd; // End date
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user; // The user to which this plan belongs
+
     @ElementCollection
     @CollectionTable(name = "learning_plan_resources", joinColumns = @JoinColumn(name = "learning_plan_id"))
-
     @Column(name = "resource")
+    private List<String> resources; // Resources for the learning plan
 
-    private List<String> resources;
-    public LearningPlan(Long id, String title, String description, List<String> topics,
-                        List<Milestone> milestones, LocalDate timelineStart, LocalDate timelineEnd,
-                        List<String> resources) {
+    public LearningPlan(Long id, String title, String description, List<String> topics, List<Milestone> milestones,
+                        LocalDate timelineStart, LocalDate timelineEnd, List<String> resources, User user) {
         this.id = id;
         this.title = title;
         this.description = description;
-        this.topics = topics;
+
         this.milestones = milestones;
+        this.timelineStart = timelineStart;
+        this.timelineEnd = timelineEnd;
         this.resources = resources;
+        this.user = user;
     }
 }

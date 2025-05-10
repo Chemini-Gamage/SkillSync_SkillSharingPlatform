@@ -12,11 +12,11 @@ public class LearningPlanDto {
     private Long id;
     private String title;
     private String description;
-    private List<String> topics;
+
     private List<MilestoneDto> milestones;
     private String timelineStart;
     private String timelineEnd;
     private List<String> resources;
-
+    private Long userId;
 
 }
