@@ -1,0 +1,37 @@
+.editLearningPlan {
+    /* background-color: #f1f2e4; */
+    margin-top: -10px;
+    display: flex;
+    ;
+
+}
+
+.btn {
+    margin-left: 80px;
+}
+
+.container {
+    background-color: rgb(255, 252, 252);
+    margin-top: 50px;
+    margin-left: 300px;
+    width: 950px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 900px 900px 500px rgba(0, 0, 0, 0.5);
+
+
+}
+
+.row .col-md-4.p-2 {
+    margin-right: 20px;
+    margin-left: 80px;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: larger;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight: bolder;
+    text-align: center;
+
+}
