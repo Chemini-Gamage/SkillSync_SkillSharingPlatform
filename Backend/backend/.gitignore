@@ -1,0 +1,109 @@
+HELP.md
+.gradle
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+bin/
+!**/src/main/**/bin/
+!**/src/test/**/bin/
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### VS Code ###
+.vscode/
+# Compiled class files
+*.class
+
+# Log files
+*.log
+
+# BlueJ files
+*.ctxt
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package files
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# Gradle build folders and files
+.gradle/
+build/
+
+# Gradle wrapper
+!gradle/wrapper/gradle-wrapper.jar
+# Exclude all build files in source directories
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### IntelliJ IDEA ###
+# IntelliJ IDEA project files
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+# Exclude out directories inside source directories
+!**/src/main/**/out/
+!**/src/test/**/out/
+
+### VS Code ###
+# VS Code project files
+.vscode/
+
+# Spring Tool Suite (STS) files
+.apt_generated/
+.classpath
+.factorypath
+.project
+.settings/
+.springBeans/
+.sts4-cache/
+bin/
+# Exclude bin directories inside source directories
+!**/src/main/**/bin/
+!**/src/test/**/bin/
+
+# Environment configuration files
+.env
+*.key
+*.pem
+application-prod.yml
+config/secrets.json
+access-refresh-token-keys/
+
+# Virtual machine crash logs (Java Hotspot)
+hs_err_pid*
+
+# Gradle wrapper files (if they are checked into the repo)
+gradle/wrapper/gradle-wrapper.jar
