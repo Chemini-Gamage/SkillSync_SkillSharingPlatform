@@ -3,9 +3,9 @@
 import { useState, useEffect } from "react"
 import { getAllPosts } from "../services/feed"
 import { useAuth } from "../context/AuthContext"
-import Header from "./components/Header"
+import Header from "../components/Header"
 import CreatePostCard from "../components/CreatePostCard"
-import PostCard from "./components/PostCard"
+import PostCard from "../components/PostCard"
 import "../styles/Feed.css"
 
 const FeedPage = () => {
