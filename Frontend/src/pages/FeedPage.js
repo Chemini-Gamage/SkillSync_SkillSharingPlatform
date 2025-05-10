@@ -3,9 +3,9 @@
 import { useState, useEffect } from "react"
 import { getAllPosts } from "../services/feed"
 import { useAuth } from "../context/AuthContext"
-import Header from "../components/Header"
+import Header from "./components/Header"
 import CreatePostCard from "../components/CreatePostCard"
-import PostCard from "../components/PostCard"
+import PostCard from "./components/PostCard"
 import "../styles/Feed.css"
 
 const FeedPage = () => {
@@ -13,6 +13,14 @@ const FeedPage = () => {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const { currentUser } = useAuth()
+
+  // Apply background image directly to the container
+  const feedContainerStyle = {
+    backgroundImage: `url(${process.env.PUBLIC_URL}/bg4.jpg)`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundAttachment: "fixed",
+  }
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -50,7 +58,7 @@ const FeedPage = () => {
   return (
     <>
       <Header />
-      <div className="feed-container">
+      <div className="feed-container" style={feedContainerStyle}>
         <div className="feed-content">
           <div className="feed-sidebar">
             <div className="sidebar-card">
@@ -73,7 +81,7 @@ const FeedPage = () => {
                       ? `${currentUser.firstName} ${currentUser.lastName}`
                       : "Complete your profile"}
                   </p>
-                  <p className="profile-headline">{currentUser?.position || "Add position"}</p>
+                  <p className="profile-headline">{currentUser?.position || "Add your skills"}</p>
                 </div>
               </div>
             </div>
@@ -93,7 +101,7 @@ const FeedPage = () => {
               </div>
             ) : posts.length === 0 ? (
               <div className="no-posts">
-                <p>No posts yet. Be the first to post!</p>
+                <p>No posts yet. Be the first to share your skills!</p>
               </div>
             ) : (
               posts.map((post) => (
@@ -111,16 +119,24 @@ const FeedPage = () => {
               <h3>SkillSync News</h3>
               <ul className="news-list">
                 <li>
-                  <span className="news-title">Tech hiring on the rise</span>
+                  <span className="news-title">Top 10 most in-demand skills for 2025</span>
                   <span className="news-date">2 days ago</span>
                 </li>
                 <li>
-                  <span className="news-title">Remote work trends shifting</span>
+                  <span className="news-title">How to showcase your coding skills effectively</span>
                   <span className="news-date">3 days ago</span>
                 </li>
                 <li>
-                  <span className="news-title">New startup funding records</span>
+                  <span className="news-title">New skill exchange program launched</span>
                   <span className="news-date">4 days ago</span>
+                </li>
+                <li>
+                  <span className="news-title">The rise of micro-learning for skill development</span>
+                  <span className="news-date">5 days ago</span>
+                </li>
+                <li>
+                  <span className="news-title">Skill mentorship opportunities available</span>
+                  <span className="news-date">1 week ago</span>
                 </li>
               </ul>
             </div>
