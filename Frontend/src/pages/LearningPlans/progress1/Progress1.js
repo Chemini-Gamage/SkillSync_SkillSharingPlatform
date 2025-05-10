@@ -399,7 +399,6 @@ function Progress1({ onAddPlan }) {
 
                                 groupedMilestones.completed.map((milestone,
                                     index) => {
-
                                     const progress = milestone.status?.toLowerCase() === 'completed' ? 100 : 0;
 
 

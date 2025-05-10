@@ -21,8 +21,7 @@
     border-radius: 50%;
 }
 
-.progress-full-wrapper.mt-3.px-4 
-{
+.progress-full-wrapper.mt-3.px-4 {
     margin-left: 100px
 }
 
@@ -30,7 +29,8 @@ body {
     background-color: #b1aaaa;
 
 }
-.col-md-4.mb-4.d-flex.justify-content-end{
+
+.col-md-4.mb-4.d-flex.justify-content-end {
     margin-left: 700px;
-    margin-top:-300px
+    margin-top: -300px
 }
