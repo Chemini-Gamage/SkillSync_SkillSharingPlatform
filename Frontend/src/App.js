@@ -86,9 +86,8 @@ function App() {
           
             <Route path="/learning_plan/edit/:id" element={<EditLearningPlan />} />
             <Route path="/learning_plan/add" element={<AddLearningPlan />} />
-     
             {/* temporary to view the learning plans */}
-            <Route path="/learning_plan/viewAll" element={<ViewAll />} />
+            {/* <Route path="/learning_plan/viewAll" element={<ViewAll />} /> */}
             <Route path="/progress" element={<Progress1 />} />
       
  <Route
@@ -112,9 +111,9 @@ function App() {
   }
 />
 
-            <Route path="/scheduling" element={<Scheduling />} />
+            {/* <Route path="/scheduling" element={<Scheduling />} /> */}
             {/* temporary to view the learning plans */}
-            <Route path="/learning_plan/viewAll" element={<ViewAll />} />
+            {/* <Route path="/learning_plan/viewAll" element={<ViewAll />} /> */}
             <Route path="/progress" element={<Progress1 />} />
             {/* <Route path="/course" element={<Course />} /> */}
           <Route path="/" element={<Navigate to="/feed" replace />} />
